@@ -1,0 +1,65 @@
+service: cnj-processor
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  environment:
+    API_TOKEN: ${self:custom.env.API_TOKEN, env:API_TOKEN}
+    DATAJUD_API_TOKEN: ${self:custom.env.DATAJUD_API_TOKEN, env:DATAJUD_API_TOKEN}
+    CNJ_QUEUE_URL:
+      Ref: CnjQueue
+    CNJ_RESULTS_TABLE: cnj_results_${self:custom.stage}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - sqs:SendMessage
+          Resource:
+            - Fn::GetAtt: [CnjQueue, Arn]
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+          Resource:
+            - Fn::GetAtt: [CnjResultsTable, Arn]
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  env: ${ssm:/aws/reference/secretsmanager/serverless-${self:custom.stage}}
+
+resources:
+  Resources:
+    CnjQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: cnj-queue-${self:custom.stage}
+    CnjResultsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: cnj_results_${self:custom.stage}
+        AttributeDefinitions:
+          - AttributeName: cnj
+            AttributeType: S
+        KeySchema:
+          - AttributeName: cnj
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+functions:
+  cnjReceiver:
+    handler: src/api/cnjReceiver.handler
+    events:
+      - http:
+          path: cnj
+          method: post
+          cors: true
+  cnjProcessor:
+    handler: src/workers/cnjProcessor.handler
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - CnjQueue
+              - Arn

@@ -1,0 +1,26 @@
+{
+  "name": "cnj-processor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "serverless": "^4.14.3",
+    "serverless-offline": "^14.4.0",
+    "serverless-offline-sqs": "^8.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.806.0",
+    "@aws-sdk/client-sqs": "^3.806.0",
+    "@serverless/utils": "^6.15.0",
+    "aws-sdk": "^2.1692.0",
+    "axios": "^1.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "k6": "^0.0.0"
+  }
+}
