@@ -1,0 +1,35 @@
+<div class="form-bg">
+  <div class="form-container">
+    <h2 class="form-title">Consultar CNJ</h2>
+    <form (ngSubmit)="submit()" autocomplete="off">
+      <label for="token" class="form-label">Token de Autenticação</label>
+      <input
+        id="token"
+        type="text"
+        [(ngModel)]="token"
+        name="token"
+        required
+        class="form-input"
+        placeholder="Digite seu token de acesso"
+        autocomplete="off"
+      />
+      <label for="cnj" class="form-label">Número CNJ</label>
+      <input
+        id="cnj"
+        type="text"
+        [(ngModel)]="cnj"
+        name="cnj"
+        required
+        class="form-input"
+        placeholder="Digite o número do CNJ"
+        (input)="onCnjInput($event)"
+      />
+      <button type="submit" [disabled]="loading" class="form-button">
+        {{ loading ? "Enviando..." : "Consultar" }}
+      </button>
+    </form>
+    <p *ngIf="message" class="form-message" [ngClass]="messageColor">
+      {{ message }}
+    </p>
+  </div>
+</div>
