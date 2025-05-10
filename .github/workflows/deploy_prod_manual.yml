@@ -11,7 +11,7 @@ on:
         type: choice
         description: "Serviço"
         options:
-          - cnj_processor
+          - backend
 
 jobs:
   sls-deploy-production:
