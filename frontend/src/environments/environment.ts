@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:3000/dev/cnj'
+  production: true,
+  apiUrl: 'https://f54941ifr2.execute-api.us-east-1.amazonaws.com/production/cnj',
 };
