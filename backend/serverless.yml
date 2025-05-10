@@ -54,7 +54,16 @@ functions:
       - http:
           path: cnj
           method: post
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: false
+            methods:
+              - OPTIONS
+              - POST
+              - GET
   cnjProcessor:
     handler: src/workers/cnjProcessor.handler
     events:
