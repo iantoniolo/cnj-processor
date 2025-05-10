@@ -77,7 +77,7 @@ jobs:
       - name: Deploy para o S3
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --delete
+          args: --delete --no-acl
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_FRONTEND }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_CICD_ACCESS_KEY_ID }}
