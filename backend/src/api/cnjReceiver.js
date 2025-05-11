@@ -26,6 +26,9 @@ exports.handler = async (event) => {
       }));
       return {
         statusCode: 401,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
         body: JSON.stringify({ message }),
       };
     }
@@ -41,6 +44,9 @@ exports.handler = async (event) => {
       }));
       return {
         statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
         body: JSON.stringify({
           message: 'O campo "cnj" é obrigatório e deve ser uma string.',
         }),
@@ -57,6 +63,9 @@ exports.handler = async (event) => {
       }));
       return {
         statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
         body: JSON.stringify({
           message: "CNJ recebido e enviado para processamento assíncrono.",
           cnj: body.cnj,
@@ -72,6 +81,9 @@ exports.handler = async (event) => {
       }));
       return {
         statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
         body: JSON.stringify({
           message: "Erro ao enviar para fila de processamento.",
         }),
