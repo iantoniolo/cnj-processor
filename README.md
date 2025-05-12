@@ -48,40 +48,40 @@ A arquitetura do CNJ Processor é baseada em microsserviços serverless na AWS, 
 6. **DynamoDB**: Banco NoSQL para persistência dos resultados das consultas.
 7. **CloudWatch**: Monitoramento, métricas e logs de todas as funções e recursos.
 
-![Diagrama de Arquitetura](./docs/images/architecture.png)
+![Diagrama de Arquitetura](https://imgur.com/wSXfpMi.png)
 > Diagrama simplificado da arquitetura serverless do projeto CNJ Processor.
 
 ## Demonstrações e Métricas
 
 ### 1. Interface do Frontend - Consulta CNJ
 
-![Consulta CNJ - Frontend](./docs/images/frontend_screen.png)
+![Consulta CNJ - Frontend](https://imgur.com/aaffHM8.png)
 > Tela principal do frontend Angular hospedado no S3, onde o usuário pode informar o token de autenticação e o número CNJ para consulta. Após o envio, uma mensagem de sucesso é exibida indicando que o CNJ foi recebido e enviado para processamento assíncrono.
 
 ### 2. Teste do Endpoint via Postman
 
-![Teste API - Postman](./docs/images/post_success.png)
+![Teste API - Postman](https://imgur.com/NSUKHhV.png)
 > Exemplo de requisição POST para o endpoint `/cnj` usando o Postman. O corpo da requisição contém o número CNJ, e a resposta confirma o recebimento e o início do processamento.
 
 ### 3. Logs do Lambda - Recebimento e Processamento
 
-![Logs Lambda - Receiver](./docs/images/receiver_logs.png)
-![Logs Lambda - Processor](./docs/images/processor_logs.jpg)
+![Logs Lambda - Receiver](https://imgur.com/UjIKxLQ.png)
+![Logs Lambda - Processor](https://imgur.com/7TvY5Li.png)
 > Logs do AWS Lambda mostrando o fluxo de recebimento da requisição, envio para a fila SQS e o processamento do CNJ. Essas informações auxiliam no monitoramento e troubleshooting do backend.
 
 ### 4. Consulta ao DynamoDB
 
-![Consulta DynamoDB](./docs/images/dynamo_results.png)
+![Consulta DynamoDB](https://imgur.com/vecGHZH.png)
 > Visualização dos resultados armazenados no DynamoDB após o processamento. Cada item representa um CNJ consultado, incluindo o status e mensagem de resposta.
 
 ### 5. Métricas CloudWatch - Lambda
 
-![CloudWatch Métricas - Receiver](./docs/images/receiver_metrics.png)
-![CloudWatch Métricas - Processor](./docs/images/processor_metrics.png)
+![CloudWatch Métricas - Receiver](https://imgur.com/jXlH15C.png)
+![CloudWatch Métricas - Processor](https://imgur.com/4YKfJXw.png)
 > Painéis do CloudWatch mostrando métricas de invocações, duração, erros e concorrência das funções Lambda responsáveis pelo processamento CNJ.
 
 ### 6. Testes de Carga com K6
 
-![K6 Teste 1](./docs/images/one_per_hour.png)
-![K6 Teste 2](./docs/images/hundred_per_minute.png)
+![K6 Teste 1](https://imgur.com/3ROx1gF.png)
+![K6 Teste 2](https://imgur.com/kwh7cpw.png)
 > Execução de testes de carga utilizando o K6 para avaliar a performance e estabilidade do endpoint de processamento CNJ.

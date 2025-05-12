@@ -2,6 +2,11 @@
 
 Interface web desenvolvida em Angular para interação com o sistema CNJ Processor.
 
+## Demonstração Visual
+
+![Interface do Frontend](https://imgur.com/aaffHM8.png)
+> Tela principal do frontend Angular, onde o usuário pode informar o token de autenticação e o número CNJ para consulta.
+
 ## Tecnologias
 
 - Angular 19+

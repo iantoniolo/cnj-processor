@@ -6,7 +6,7 @@ Backend responsável pelo processamento dos dados do CNJ, utilizando arquitetura
 
 O backend segue um fluxo serverless conforme o diagrama abaixo:
 
-![Diagrama da Arquitetura](../docs/images/architecture.png)
+![Diagrama da Arquitetura](https://imgur.com/wSXfpMi.png)
 
 - **API Gateway:** Recebe requisições do cliente.
 - **Lambda de validação:** Valida e processa dados iniciais, envia mensagens para a fila SQS e publica métricas no CloudWatch.
